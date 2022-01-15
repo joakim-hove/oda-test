@@ -11,8 +11,8 @@ class OdaScraper:
     decimal_point = ","
     price_regexp = re.compile(fr"({currency})\s+(?P<amount>\d+){decimal_point}(?P<decimal_amount>\d+)(\s+(?P<unit>.+))?$")
 
-    def __init__(self):
-        self.fetcher = Fetcher()
+    def __init__(self, max_bandwidth=0):
+        self.fetcher = Fetcher(max_bandwidth=max_bandwidth)
 
     def url(self, path):
         return self.host + path
