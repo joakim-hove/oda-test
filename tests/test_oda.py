@@ -2,7 +2,7 @@ import datetime
 import pytest
 import unittest
 
-from scraper import OdaScraper
+from scraper import OdaScraper, Product
 
 
 class TestOdaScraper(unittest.TestCase):
@@ -55,3 +55,20 @@ class TestOdaScraper(unittest.TestCase):
         for e,c in zip(expected, fruit_catalog.categories):
             assert e[0] == c.name
             assert e[1] == len(c.products)
+
+
+        expected_apples = [ Product("Pink Lady Epler",
+                                    "/no/products/26541-pink-lady-epler-italia/",
+                                    39.90,
+                                    46.94,
+                                    "per kg"),
+                            Product("Epler, Grønne, 6 pk",
+                                    "/no/products/27169-epler-gronne-6-pk-granny-smith-italia/",
+                                    25.60,
+                                    28.44,
+                                    "per kg")]
+
+
+        apples = fruit_catalog.categories[0].products
+        for test_index in range(len(expected_apples)):
+            assert expected_apples[test_index] == apples[test_index]

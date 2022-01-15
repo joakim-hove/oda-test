@@ -55,8 +55,7 @@ class OdaScraper:
         name_elm = dom.find("div", class_="name-main")
         name = name_elm.text.strip()
         url = dom["href"]
-
-        return Product(name, url, unit_price, label_price, unit)
+        return Product(name, url, label_price, unit_price, unit)
 
 
     def fetch_products(self, url):
