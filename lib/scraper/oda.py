@@ -93,10 +93,7 @@ class OdaScraper:
 
                 if sub_categories:
                     for sub_cat in sub_categories.dom:
-                        sub_catalog = self.make_sub_category(sub_cat)
-                        top_cat.add_category(sub_catalog)
-
                         products = self.fetch_products(sub_cat["href"])
-                        sub_catalog.add_category(products)
+                        top_cat.add_category(products)
 
         return catalog
