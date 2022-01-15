@@ -4,6 +4,9 @@ import time
 import requests
 from bs4 import BeautifulSoup
 
+def parse(text):
+    return BeautifulSoup(text, features="html.parser")
+
 class Throttle:
 
     def __init__(self, max_speed=1024*256*0):
@@ -44,7 +47,7 @@ class Fetcher:
 
     @classmethod
     def html_filter(cls, text, class_filter):
-        dom = BeautifulSoup(text, features="html.parser")
+        dom = parse(text)
         if class_filter:
             tag,class_ = class_filter
             dom = dom.find_all(tag, class_ = class_)

@@ -1,9 +1,3 @@
 from .oda import OdaScraper
-from .util import Fetcher
+from .util import Fetcher, parse, Throttle
 from .product_catalog import ProductCatalog
-
-from bs4 import BeautifulSoup
-
-
-def parse(text):
-    return BeautifulSoup(text, features="html.parser")

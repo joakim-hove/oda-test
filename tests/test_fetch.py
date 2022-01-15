@@ -2,8 +2,6 @@ import datetime
 import pytest
 import unittest
 
-from bs4 import BeautifulSoup
-
 from scraper.util import *
 
 
