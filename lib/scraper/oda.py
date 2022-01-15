@@ -99,10 +99,5 @@ class OdaScraper:
 
                         products = self.fetch_products(sub_cat["href"])
                         sub_catalog.add_category(products)
-                        #products = self.fetcher.fetch_dom(self.url(sub_cat["href"]), class_filter=("a", "modal-link"))
-                        #if products:
-                        #    for p in products.dom:
-                        #        prod = self.make_product(p)
-                        #        sub_catalog.add_product(prod)
 
         return catalog
