@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 
 def parse(text):
-    return BeautifulSoup(text, features="html.parser")
+    return BeautifulSoup(text, features="lxml")
 
 class Throttle:
 
