@@ -9,7 +9,7 @@ class TestScraperUtil:
 
 
     def test_throttle(self):
-        t1 = Throttle(max_speed = 0)
+        t1 = Throttle(max_bandwidth = 0)
         t1.add_download(1024*1024*1024)
 
         st = datetime.datetime.now()
@@ -18,7 +18,7 @@ class TestScraperUtil:
         assert dt.total_seconds() <  1
 
 
-        t2 = Throttle(max_speed=1024)
+        t2 = Throttle(max_bandwidth=1024)
         t2.add_download(1024)
         st = datetime.datetime.now()
         t2.wait()
