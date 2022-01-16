@@ -41,9 +41,14 @@ class FetchResult:
 
 
 class Fetcher:
-    def __init__(self, max_bandwidth=0):
-        self.throttle = Throttle(max_bandwidth=max_bandwidth)
+    def __init__(self, host, throttle):
+        self.host = host
+        self.throttle = throttle
         self.request_session = requests.Session()
+
+    def url(self, path):
+        return self.host + path
+
 
     @classmethod
     def html_filter(cls, text, class_filter):

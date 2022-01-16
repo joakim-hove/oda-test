@@ -2,12 +2,19 @@ import datetime
 import pytest
 import unittest
 
-from scraper import OdaScraper, Product
+from scraper import OdaScraper, Product, Throttle, Fetcher
 
 
 class TestOdaScraper(unittest.TestCase):
 
     oda_host = "https://oda.com"
+    max_bandwidth = 1024*256
+
+
+    def setUp(self):
+        throttle = Throttle(self.max_bandwidth)
+        fetcher = Fetcher(self.oda_host, throttle)
+        self.os = OdaScraper( fetcher )
 
 
 
@@ -34,8 +41,7 @@ class TestOdaScraper(unittest.TestCase):
 
 
     def test_single_product_page(self):
-        os = OdaScraper(self.oda_host)
-        fish_catalog = os.fetch_products("/no/categories/488-mathall/498-fiskedisken/")
+        fish_catalog = self.os.fetch_products("/no/categories/488-mathall/498-fiskedisken/")
         assert len(fish_catalog.products) == 41
         assert fish_catalog.products[0].name == "Levende Blåskjell"
         assert len(fish_catalog.categories) == 0
@@ -43,8 +49,7 @@ class TestOdaScraper(unittest.TestCase):
 
 
     def test_nested_product_page(self):
-        os = OdaScraper(self.oda_host)
-        fruit_catalog = os.fetch_products("/no/categories/20-frukt-og-gront/21-fruit/")
+        fruit_catalog = self.os.fetch_products("/no/categories/20-frukt-og-gront/21-fruit/")
         assert fruit_catalog.name == "Frukt"
         assert len(fruit_catalog.categories) == 7
         expected = [("Epler og pærer", 13),

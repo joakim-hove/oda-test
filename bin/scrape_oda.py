@@ -11,7 +11,10 @@ def run_main(argv):
 
     args = arg_parser.parse_args(argv[1:])
 
-    os = OdaScraper(args.host)
+    throttle = Throttle(max_bandwidth)
+    fetcher = Fetcher(args.host, throttle)
+
+    os = OdaScraper(fetcher)
     pc = os.run()
 
     with open("dump.txt", "w") as fh:
