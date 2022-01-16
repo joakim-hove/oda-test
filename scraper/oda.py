@@ -41,6 +41,13 @@ class OdaScraper:
         return price,unit
 
 
+    @classmethod
+    def _extract_product_id(self, url):
+        split1 = url.split("-", maxsplit=1)
+        id_string = split1[0].split("/")[-1]
+        return int(id_string)
+
+
     def make_product(self, dom):
         lp = dom.find("p", class_="label-price")
         label_price = 100
@@ -55,7 +62,9 @@ class OdaScraper:
         name_elm = dom.find("div", class_="name-main")
         name = name_elm.text.strip()
         url = dom["href"]
-        return Product(name, url, label_price, unit_price, unit)
+        product_id = self._extract_product_id(url)
+
+        return Product(product_id, name, url, label_price, unit_price, unit)
 
 
     def fetch_products(self, url):

@@ -57,12 +57,14 @@ class TestOdaScraper(unittest.TestCase):
             assert e[1] == len(c.products)
 
 
-        expected_apples = [ Product("Pink Lady Epler",
+        expected_apples = [ Product(26541,
+                                    "Pink Lady Epler",
                                     "/no/products/26541-pink-lady-epler-italia/",
                                     39.90,
                                     46.94,
                                     "per kg"),
-                            Product("Epler, Grønne, 6 pk",
+                            Product(27169,
+                                    "Epler, Grønne, 6 pk",
                                     "/no/products/27169-epler-gronne-6-pk-granny-smith-italia/",
                                     25.60,
                                     28.44,

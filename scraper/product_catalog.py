@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Product:
+    product_id : int
     name : str
     url : str
     label_price  : float
@@ -10,14 +11,15 @@ class Product:
 
 
     def data(self):
-        return {"label_price" : self.label_price,
+        return {"id" : self.product_id,
+                "label_price" : self.label_price,
                 "url" : self.url,
                 "unit_price" : self.unit_price,
                 "unit" : self.unit,
                 "name" : self.name}
 
     def dump(self, prefix):
-        return f"{prefix}: {self.name}   {self.unit_price} {self.unit}      {self.url}\n"
+        return f"{prefix}: {self.name}:{self.product_id}   {self.unit_price} {self.unit}       {self.url}\n"
 
 
 class ProductCatalog:

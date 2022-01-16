@@ -9,19 +9,19 @@ class TestProductCatalog(unittest.TestCase):
 
     def test_catalog(self):
         catalog = ProductCatalog("Drikke")
-        grans_beer = Product("Grans pils", "url", 100, 50, "l")
+        grans_beer = Product(1, "Grans pils", "url", 100, 50, "l")
         catalog.add_product(grans_beer)
 
         soda = ProductCatalog("Brus")
-        cola = Product("Cola", "url", 1, 2, "l")
-        solo = Product("Solo", "url", 3, 4, "l")
+        cola = Product(4, "Cola", "url", 1, 2, "l")
+        solo = Product(5, "Solo", "url", 3, 4, "l")
         soda.add_product(cola)
         soda.add_product(solo)
 
 
         milk = ProductCatalog("Melk")
-        whole_milk = Product("H-melk", "url", 7, 8, "l")
-        skimmed_milk = Product("Skummet melk", "url", 5, 6, "l")
+        whole_milk = Product(2, "H-melk", "url", 7, 8, "l")
+        skimmed_milk = Product(3, "Skummet melk", "url", 5, 6, "l")
         milk.add_product(whole_milk)
         milk.add_product(skimmed_milk)
 
@@ -34,6 +34,7 @@ class TestProductCatalog(unittest.TestCase):
             "name": "Drikke",
             "products": [
                 {
+                    "id" : 1,
                     "url" :"url",
                     "name": "Grans pils",
                     "label_price": 100,
@@ -47,6 +48,7 @@ class TestProductCatalog(unittest.TestCase):
                     "categories": [],
                     "products": [
                         {
+                            "id" : 2,
                             "url" :"url",
                             "name": "H-melk",
                             "label_price": 7,
@@ -54,6 +56,7 @@ class TestProductCatalog(unittest.TestCase):
                             "unit": "l"
                         },
                         {
+                            "id" : 3,
                             "url" :"url",
                             "name": "Skummet melk",
                             "label_price": 5,
@@ -67,6 +70,7 @@ class TestProductCatalog(unittest.TestCase):
                     "categories": [],
                     "products": [
                         {
+                            "id" : 4,
                             "url" :"url",
                             "name": "Cola",
                             "label_price": 1,
@@ -74,6 +78,7 @@ class TestProductCatalog(unittest.TestCase):
                             "unit": "l"
                         },
                         {
+                            "id" : 5,
                             "url" :"url",
                             "name": "Solo",
                             "label_price": 3,
