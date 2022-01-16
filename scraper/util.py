@@ -30,7 +30,7 @@ class Throttle:
 
 
 class FetchResult:
-    def __init__(self, http_status, dom = None, content = None):
+    def __init__(self, http_status, dom = None, content = None, url = None):
         self.http_status = http_status
         self.dom = dom
         self.content = content
@@ -45,6 +45,7 @@ class Fetcher:
         self.host = host
         self.throttle = throttle
         self.request_session = requests.Session()
+        self.errors = {}
 
     def url(self, path):
         return self.host + path
@@ -68,6 +69,8 @@ class Fetcher:
             dom = self.html_filter(respons.content, class_filter)
             return FetchResult(respons.status_code, dom=dom)
         else:
-            return FetchResult(respons.status_code, content=respons.text)
+            error_result = FetchResult(respons.status_code, content=respons.text, url=url)
+            self.errors.append(error_result)
+            return error_result
 
 
