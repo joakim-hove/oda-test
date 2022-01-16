@@ -1,5 +1,6 @@
 import datetime
 import time
+import sys
 
 import requests
 from bs4 import BeautifulSoup
@@ -61,7 +62,7 @@ class Fetcher:
 
 
     def fetch_dom(self, url, class_filter = None):
-        print(f"Fetching: {url}")
+        sys.stderr.write(f"Fetching: {url}\n")
         self.throttle.wait()
         respons = self.request_session.get(url)
         if respons.status_code == 200:
