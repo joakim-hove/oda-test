@@ -5,14 +5,14 @@ from .util import Fetcher
 
 
 class OdaScraper:
-    host = "https://oda.com"
     root = "/no/products/"
     currency = "kr"
     decimal_point = ","
     price_regexp = re.compile(fr"({currency})\s+(?P<amount>\d+){decimal_point}(?P<decimal_amount>\d+)(\s+(?P<unit>.+))?$")
 
-    def __init__(self, max_bandwidth=0):
+    def __init__(self, host, max_bandwidth=0):
         self.fetcher = Fetcher(max_bandwidth=max_bandwidth)
+        self.host = host
 
     def url(self, path):
         return self.host + path

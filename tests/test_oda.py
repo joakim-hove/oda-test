@@ -7,6 +7,9 @@ from scraper import OdaScraper, Product
 
 class TestOdaScraper(unittest.TestCase):
 
+    oda_host = "https://oda.com"
+
+
 
     def test_price(self):
         decimal_point = OdaScraper.decimal_point
@@ -31,7 +34,7 @@ class TestOdaScraper(unittest.TestCase):
 
 
     def test_single_product_page(self):
-        os = OdaScraper()
+        os = OdaScraper(self.oda_host)
         fish_catalog = os.fetch_products("/no/categories/488-mathall/498-fiskedisken/")
         assert len(fish_catalog.products) == 41
         assert fish_catalog.products[0].name == "Levende Blåskjell"
@@ -40,7 +43,7 @@ class TestOdaScraper(unittest.TestCase):
 
 
     def test_nested_product_page(self):
-        os = OdaScraper()
+        os = OdaScraper(self.oda_host)
         fruit_catalog = os.fetch_products("/no/categories/20-frukt-og-gront/21-fruit/")
         assert fruit_catalog.name == "Frukt"
         assert len(fruit_catalog.categories) == 7
