@@ -14,10 +14,14 @@ def dump_result(ofile, out_string):
 
 
 def run_main(argv):
-    arg_parser = ArgumentParser()
-    arg_parser.add_argument("--host", help="Hostname to start crawling", default="https://oda.com")
-    arg_parser.add_argument("--max-bw", help="Maximum bandwidth byte/s - 0 : unlimited", default=0, type=int)
-    arg_parser.add_argument("--fmt", help="Output format txt|json", default="txt")
+    default_host   = "https://oda.com"
+    default_fmt    = "txt"
+    default_max_bw = 0
+
+    arg_parser = ArgumentParser("Application to fetch the complete productcatalog from Oda by scraping html\n")
+    arg_parser.add_argument("--host", help=f"Hostname to start crawling - default={default_host}", default=default_host)
+    arg_parser.add_argument("--max-bw", help=f"Maximum bandwidth byte/s - default={default_max_bw} 0:unlimited", default=default_max_bw, type=int)
+    arg_parser.add_argument("--fmt", help=f"Output format txt|json default={default_fmt}", default=default_fmt)
     arg_parser.add_argument("--outfile", help="Name of output file - default is stdout")
 
     args = arg_parser.parse_args(argv[1:])
